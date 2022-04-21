@@ -19,10 +19,10 @@ public class PlayerMovement : MonoBehaviour
     private bool readyToJump = true;
 
     [Header("Ground Check")]
-    [SerializeField] private float playerHeight;
     [SerializeField] LayerMask whatIsGround;
 
     private bool grounded;
+    private float playerHeight;
 
     [SerializeField] private Transform orientation;
 
@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        playerHeight = GetComponentInChildren<CapsuleCollider>().bounds.size.y;
     }
 
     private void Update()
