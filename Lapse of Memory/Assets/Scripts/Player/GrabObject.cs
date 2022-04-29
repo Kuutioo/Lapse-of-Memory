@@ -31,6 +31,7 @@ public class GrabObject : MonoBehaviour
         if(grabbedObject != null)
         {
             MoveObject();
+           
         }
     }
 
@@ -50,6 +51,7 @@ public class GrabObject : MonoBehaviour
             Rigidbody objectRigidbody = pickObject.GetComponent<Rigidbody>();
             objectRigidbody.useGravity = false;
             objectRigidbody.drag = 10;
+            objectRigidbody.constraints = RigidbodyConstraints.FreezeRotationZ;
 
             objectRigidbody.transform.parent = holdParent;
             grabbedObject = pickObject;
@@ -61,6 +63,7 @@ public class GrabObject : MonoBehaviour
         Rigidbody heldRigidbody = grabbedObject.GetComponent<Rigidbody>();
         heldRigidbody.useGravity = true;
         heldRigidbody.drag = 1;
+        heldRigidbody.constraints = RigidbodyConstraints.None;
 
         grabbedObject.transform.parent = null;
         grabbedObject = null;
